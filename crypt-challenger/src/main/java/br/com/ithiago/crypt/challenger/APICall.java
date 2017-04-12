@@ -8,13 +8,16 @@ public class APICall {
 	
 	private String url;
 	
+	private Client client;
+	
 	public APICall(String url) {
 		this.url = url;
+		client = Client.create();
 	}
 
 	
 	public String call(String coder, Boolean test, String challenge) {
-		Client client = Client.create();
+		
 		
 		WebResource resource = client.resource(String.format(url + "?coder=%s&test=%s&challenge=%s", coder, test.toString(), challenge));
 		ClientResponse response = resource.accept("application/json").get(ClientResponse.class);
