@@ -76,11 +76,11 @@ public class App {
 		return character == ResponseEnum.R.getCharName() || character == ResponseEnum.U.getCharName();
 	}
 
-	private String decodeString(Integer size, List<String> exists) {
+	private String decodeString(Integer size, List<String> validChars) {
 		char[] decodedString = new char[size];
 		
-		for (String string : exists) {
-			String challenge = StringUtils.rightPad(StringUtils.EMPTY, size, string);
+		for (String eachChar : validChars) {
+			String challenge = StringUtils.rightPad(StringUtils.EMPTY, size, eachChar);
 			response = restClient.call(createQueryParams(CODER, true, challenge));
 			
 			for (int i = 0; i < response.getContent().length(); i++) {
