@@ -22,7 +22,7 @@ public class RestClientTest {
 	@Test
 	public void shouldGetTheChallengeSize() {
 		Map<String, String> queryParams = new HashMap<String, String>();
-		queryParams.put("coder", "tfonseca@ciandt.com");
+		queryParams.put("coder", "dev.thiago@gmail.com");
 		queryParams.put("test", "true");
 		queryParams.put("challenge", StringUtils.EMPTY);
 		
