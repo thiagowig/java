@@ -1,73 +1,118 @@
 package br.com.ithiago.crypt.challenger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.com.ithiago.crypt.challenger.model.Response;
+
 /**
- * Hello world!
+ * dev.thiago@gmail.com
  *
  */
 public class App {
-	
-	public static void main(String[] args) {	
-		APICall apiCall = new APICall("https://ac-challenge.herokuapp.com/api/challenge");
-		Integer size = Integer.valueOf(apiCall.call("dev.thiago@gmail.com", true, ""));
-		
-		System.out.println(size);
-		
-		String regex = "[a-zA-Z0-9_=]";
-		
-		StringGenerator stringGenerator = new StringGenerator(regex);
-		
-		boolean founded = false;
-		
-		
-		List<String> exists = new ArrayList<String>(); 
-		char[] decodedString = new char[size];
-		int current = 0;
-		
-		String challenge = null;
+
+	private static final String URL = "https://ac-challenge.herokuapp.com/api/challenge";
+
+	private static final String CODER = "dev.thiago@gmail.com";
+
+	private static final String REGEX = "[a-zA-Z0-9_=]";
+
+	private RestClient restClient;
+
+	private Response response;
+
+	public App() {
+		restClient = new RestClient(URL);
+	}
+
+	private void executeChallenge() {
+		Integer challengeSize = getChallengeSize();
+		List<String> validChars = getValidChars(challengeSize);
+		String decodedString = decodeString(challengeSize, validChars);
+
+		response = restClient.call(createQueryParams(CODER, false, decodedString));
+
+		System.out.println("Final Result: " + response.getContent());
+	}
+
+	private int getChallengeSize() {
+		response = restClient.call(createQueryParams(CODER, true, StringUtils.EMPTY));
+		return Integer.valueOf(response.getContent());
+	}
+
+	private List<String> getValidChars(int size) {
+		RegexGenerator regexGenerator = new RegexGenerator(REGEX);
+		List<String> validChars = new ArrayList<String>();
+		int currentIndex = 0;
+		String challenge;
+
 		do {
-			challenge = stringGenerator.get(current, size);
-			
-			if (!challenge.equals("")) {
+			challenge = regexGenerator.generate(currentIndex, size);
+
+			if (!challenge.equals(StringUtils.EMPTY)) {
 				challenge = StringUtils.rightPad(challenge, size, '*');
-				System.out.println("Challenge\n" + challenge);
-				
-				
-				String result = apiCall.call("dev.thiago@gmail.com", true, challenge);
-				
-				System.out.println("Result\n" + result);
-				
-				for (int i = 0; i < result.length(); i++) {
-					char character = result.charAt(i);
-					if (character == 'R' || character == 'U') {
-						exists.add(String.valueOf(challenge.charAt(i)));
+				response = restClient.call(createQueryParams(CODER, true, challenge));
+
+				for (int i = 0; i < response.getContent().length(); i++) {
+					char character = response.getContent().charAt(i);
+					if (isValidChar(character)) {
+						validChars.add(String.valueOf(challenge.charAt(i)));
 					}
 				}
-				
-				current += size;
-			}			
-			
-		} while (!challenge.equals(""));
+
+				currentIndex += size;
+			}
+
+		} while (!challenge.equals(StringUtils.EMPTY));
+
+		return validChars;
+	}
+
+	private boolean isValidChar(char character) {
+		return character == ResponseEnum.R.getCharName() || character == ResponseEnum.U.getCharName();
+	}
+
+	private String decodeString(Integer size, List<String> exists) {
+		char[] decodedString = new char[size];
 		
 		for (String string : exists) {
-			challenge = StringUtils.rightPad("", size, string);
+			String challenge = StringUtils.rightPad(StringUtils.EMPTY, size, string);
+			response = restClient.call(createQueryParams(CODER, true, challenge));
 			
-			String result = apiCall.call("dev.thiago@gmail.com", true, challenge);
-			for (int i = 0; i < result.length(); i++) {
-				char character = result.charAt(i);
-				if (character == 'R') {
+			for (int i = 0; i < response.getContent().length(); i++) {
+				char character = response.getContent().charAt(i);
+				if (character == ResponseEnum.R.getCharName()) {
 					decodedString[i] = challenge.charAt(i);
 				}
 			}
 		}
+
+		StringBuilder decoded = new StringBuilder();
+
+		for (char c : decodedString) {
+			decoded.append(c);
+		}
 		
-		
-		System.out.println("Decoded\n" + decodedString);
-		
-		System.out.println("Exists\n" + exists);
+		return decoded.toString();
+	}
+
+	private Map<String, String> createQueryParams(String coder, Boolean test, String challenge) {
+		Map<String, String> queryParams = new HashMap<String, String>();
+
+		queryParams.put("coder", coder);
+		queryParams.put("test", test.toString());
+		queryParams.put("challenge", challenge);
+
+		return queryParams;
+	}
+
+	public static void main(String[] args) {
+		App app = new App();
+
+		app.executeChallenge();
 	}
 }
