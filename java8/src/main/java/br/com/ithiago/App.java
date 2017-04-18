@@ -1,6 +1,5 @@
 package br.com.ithiago;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -32,6 +31,7 @@ public class App {
         filterAndMapAList();
         toUpperCase();
         groupingBy();
+        stringJoiner();
     }
 
     private void init() {
@@ -158,5 +158,17 @@ public class App {
         ));
 
         System.out.println(result);
+    }
+
+    private void stringJoiner() {
+        System.out.println("\n### stringJoiner");
+
+        StringJoiner stringJoiner = new StringJoiner(", ");
+
+        stringJoiner.add("Thiago");
+        stringJoiner.add("Santos");
+        stringJoiner.add("Fonseca");
+
+        System.out.println(stringJoiner.toString());
     }
 }
