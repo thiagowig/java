@@ -1,13 +1,12 @@
 package br.com.ithiago;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Hello world!
+ * Testing some Java 8 features
  *
  */
 public class App {
@@ -31,10 +30,12 @@ public class App {
         findAnyMultipleConditions();
         filterAndMap();
         filterAndMapAList();
+        toUpperCase();
+        groupingBy();
     }
 
     private void init() {
-        users = new ArrayList<User>();
+        users = new ArrayList<>();
         users.add(new User("Marco", 60));
         users.add(new User("Tania", 50));
         users.add(new User("Simone", 25));
@@ -131,5 +132,31 @@ public class App {
                 .collect(Collectors.toList());
 
         usersNames.forEach(System.out::println);
+    }
+
+    private void toUpperCase() {
+        System.out.println("\n### toUpperCase");
+
+        List<String> usersNames = users.stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
+
+        List<String> usersNamesUpper = usersNames.stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+
+        usersNamesUpper.forEach(System.out::println);
+    }
+
+    private void groupingBy() {
+        System.out.println("\n### groupingBy");
+
+        List<String> items = Arrays.asList("apple", "banana", "orange", "apple", "orange", "apple");
+
+        Map<String, Long> result = items.stream().collect(Collectors.groupingBy(
+                Function.identity(), Collectors.counting()
+        ));
+
+        System.out.println(result);
     }
 }
