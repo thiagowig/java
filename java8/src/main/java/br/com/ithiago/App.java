@@ -3,6 +3,7 @@ package br.com.ithiago;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Testing some Java 8 features
@@ -32,6 +33,8 @@ public class App {
         toUpperCase();
         groupingBy();
         stringJoiner();
+        streamToList();
+        optional();
     }
 
     private void init() {
@@ -170,5 +173,32 @@ public class App {
         stringJoiner.add("Fonseca");
 
         System.out.println(stringJoiner.toString());
+    }
+
+    private void streamToList() {
+        System.out.println("\n### streamToList");
+
+        Stream<String> languages = Stream.of("java", "pascal", "shell", "javascript");
+
+        List<String> result = languages.collect(Collectors.toList());
+
+        result.forEach(System.out::println);
+    }
+
+    private void optional() {
+        System.out.println("\n### optional");
+
+        Optional<String> gender = Optional.of("MALE");
+        String answer01 = "Yes";
+        String answer02 = null;
+
+        System.out.println("Non-Empty Optional: " + gender);
+        System.out.println("Non-Empty Optional: Gender value: " + gender.get());
+        System.out.println("Empty Optional: " + Optional.empty());
+
+        System.out.println("ofNullable on Non-Empty Optional: " + Optional.ofNullable(answer01));
+        System.out.println("ofNullable on Empty Optional: " + Optional.ofNullable(answer02));
+
+        System.out.println("ofNullable on Non-Empty Optional: " + Optional.of(answer02));
     }
 }
