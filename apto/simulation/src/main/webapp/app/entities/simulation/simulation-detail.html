@@ -1,0 +1,63 @@
+
+<div>
+    <h2><span>Simulation</span> {{vm.simulation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Financial Instituition</span></dt>
+        <dd>
+            <span>{{vm.simulation.financialInstituition}}</span>
+        </dd>
+        <dt><span>Property Value</span></dt>
+        <dd>
+            <span>{{vm.simulation.propertyValue}}</span>
+        </dd>
+        <dt><span>Using Fgts</span></dt>
+        <dd>
+            <span>{{vm.simulation.usingFgts}}</span>
+        </dd>
+        <dt><span>Financial Value</span></dt>
+        <dd>
+            <span>{{vm.simulation.financialValue}}</span>
+        </dd>
+        <dt><span>Initial Value</span></dt>
+        <dd>
+            <span>{{vm.simulation.initialValue}}</span>
+        </dd>
+        <dt><span>Fgts Value</span></dt>
+        <dd>
+            <span>{{vm.simulation.fgtsValue}}</span>
+        </dd>
+        <dt><span>Months</span></dt>
+        <dd>
+            <span>{{vm.simulation.months}}</span>
+        </dd>
+        <dt><span>Tax</span></dt>
+        <dd>
+            <span>{{vm.simulation.tax}}</span>
+        </dd>
+        <dt><span>With TR</span></dt>
+        <dd>
+            <span>{{vm.simulation.withTR}}</span>
+        </dd>
+        <dt><span>Sac Installment</span></dt>
+        <dd>
+            <span>{{vm.simulation.sacInstallment}}</span>
+        </dd>
+        <dt><span>Price Installment</span></dt>
+        <dd>
+            <span>{{vm.simulation.priceInstallment}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="simulation-detail.edit({id:vm.simulation.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>
