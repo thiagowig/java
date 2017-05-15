@@ -21,7 +21,7 @@ spring:
             enabled: false
     data:
         mongodb:
-            uri: mongodb://user:user123@ds019068.mlab.com:19068/simulation
+            uri: mongodb://<user>:<pass>@<server>:<port>/<database>
             database: simulation
     mail:
         host: localhost
