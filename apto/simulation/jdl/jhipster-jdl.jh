@@ -1,0 +1,17 @@
+enum FinancialInstituition {
+	BB, BRADESCO, CAIXA, ITAU, SANTANDER
+}
+
+entity Simulation {
+	financialInstituition FinancialInstituition,
+	propertyValue Integer,
+    usingFgts Boolean,
+    financialValue Integer,
+    initialValue Integer,
+    fgtsValue Integer,
+    months Integer,
+    tax Double,
+    withTR Boolean,
+    sacInstallment Double,
+    priceInstallment Double
+}

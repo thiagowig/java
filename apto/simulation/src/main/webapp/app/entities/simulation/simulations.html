@@ -1,0 +1,76 @@
+<div>
+    <h2>Simulations</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="simulation.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Simulation
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Financial Instituition</span></th>
+                    <th><span>Property Value</span></th>
+                    <th><span>Using Fgts</span></th>
+                    <th><span>Financial Value</span></th>
+                    <th><span>Initial Value</span></th>
+                    <th><span>Fgts Value</span></th>
+                    <th><span>Months</span></th>
+                    <th><span>Tax</span></th>
+                    <th><span>With TR</span></th>
+                    <th><span>Sac Installment</span></th>
+                    <th><span>Price Installment</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="simulation in vm.simulations track by simulation.id">
+                    <td><a ui-sref="simulation-detail({id:simulation.id})">{{simulation.id}}</a></td>
+                    <td>{{simulation.financialInstituition}}</td>
+                    <td>{{simulation.propertyValue}}</td>
+                    <td>{{simulation.usingFgts}}</td>
+                    <td>{{simulation.financialValue}}</td>
+                    <td>{{simulation.initialValue}}</td>
+                    <td>{{simulation.fgtsValue}}</td>
+                    <td>{{simulation.months}}</td>
+                    <td>{{simulation.tax}}</td>
+                    <td>{{simulation.withTR}}</td>
+                    <td>{{simulation.sacInstallment}}</td>
+                    <td>{{simulation.priceInstallment}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="simulation-detail({id:simulation.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="simulation.edit({id:simulation.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="simulation.delete({id:simulation.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

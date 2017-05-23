@@ -1,0 +1,56 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "financialInstituition",
+            "fieldType": "FinancialInstituition",
+            "fieldValues": "BB,BRADESCO,CAIXA,ITAU,SANTANDER"
+        },
+        {
+            "fieldName": "propertyValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "usingFgts",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "financialValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "initialValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fgtsValue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "months",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tax",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "withTR",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "sacInstallment",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "priceInstallment",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170514143238",
+    "entityTableName": "simulation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

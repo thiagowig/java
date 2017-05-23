@@ -1,0 +1,94 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="mySimulationLabel">Create or edit a Simulation</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.simulation.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.simulation.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_financialInstituition">Financial Instituition</label>
+            <select class="form-control" name="financialInstituition" ng-model="vm.simulation.financialInstituition" id="field_financialInstituition">
+                <option value="BB">BB</option>
+                <option value="BRADESCO">BRADESCO</option>
+                <option value="CAIXA">CAIXA</option>
+                <option value="ITAU">ITAU</option>
+                <option value="SANTANDER">SANTANDER</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_propertyValue">Property Value</label>
+            <input type="number" class="form-control" name="propertyValue" id="field_propertyValue"
+                    ng-model="vm.simulation.propertyValue"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_usingFgts">Using Fgts</label>
+                <input type="checkbox" name="usingFgts" id="field_usingFgts"
+                          ng-model="vm.simulation.usingFgts"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_financialValue">Financial Value</label>
+            <input type="number" class="form-control" name="financialValue" id="field_financialValue"
+                    ng-model="vm.simulation.financialValue"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_initialValue">Initial Value</label>
+            <input type="number" class="form-control" name="initialValue" id="field_initialValue"
+                    ng-model="vm.simulation.initialValue"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fgtsValue">Fgts Value</label>
+            <input type="number" class="form-control" name="fgtsValue" id="field_fgtsValue"
+                    ng-model="vm.simulation.fgtsValue"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_months">Months</label>
+            <input type="number" class="form-control" name="months" id="field_months"
+                    ng-model="vm.simulation.months"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tax">Tax</label>
+            <input type="number" class="form-control" name="tax" id="field_tax"
+                    ng-model="vm.simulation.tax"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_withTR">With TR</label>
+                <input type="checkbox" name="withTR" id="field_withTR"
+                          ng-model="vm.simulation.withTR"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_sacInstallment">Sac Installment</label>
+            <input type="number" class="form-control" name="sacInstallment" id="field_sacInstallment"
+                    ng-model="vm.simulation.sacInstallment"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_priceInstallment">Price Installment</label>
+            <input type="number" class="form-control" name="priceInstallment" id="field_priceInstallment"
+                    ng-model="vm.simulation.priceInstallment"
+                    />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
