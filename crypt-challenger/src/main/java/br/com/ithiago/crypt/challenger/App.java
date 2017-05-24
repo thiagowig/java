@@ -19,6 +19,8 @@ public class App {
 
 	private static final String CODER = "dev.thiago@gmail.com";
 
+	private static final Boolean TEST = false;
+
 	private static final String REGEX = "[a-zA-Z0-9_=]";
 
 	private RestClient restClient;
@@ -34,13 +36,13 @@ public class App {
 		List<String> validChars = getValidChars(challengeSize);
 		String decodedString = decodeString(challengeSize, validChars);
 
-		response = restClient.call(createQueryParams(CODER, false, decodedString));
+		response = restClient.call(createQueryParams(CODER, TEST, decodedString));
 
 		System.out.println("Final Result: " + response.getContent());
 	}
 
 	private int getChallengeSize() {
-		response = restClient.call(createQueryParams(CODER, true, StringUtils.EMPTY));
+		response = restClient.call(createQueryParams(CODER, TEST, StringUtils.EMPTY));
 		return Integer.valueOf(response.getContent());
 	}
 
@@ -55,7 +57,7 @@ public class App {
 
 			if (!challenge.equals(StringUtils.EMPTY)) {
 				challenge = StringUtils.rightPad(challenge, size, '*');
-				response = restClient.call(createQueryParams(CODER, true, challenge));
+				response = restClient.call(createQueryParams(CODER, TEST, challenge));
 
 				for (int i = 0; i < response.getContent().length(); i++) {
 					char character = response.getContent().charAt(i);
@@ -81,7 +83,7 @@ public class App {
 		
 		for (String eachChar : validChars) {
 			String challenge = StringUtils.rightPad(StringUtils.EMPTY, size, eachChar);
-			response = restClient.call(createQueryParams(CODER, true, challenge));
+			response = restClient.call(createQueryParams(CODER, TEST, challenge));
 			
 			for (int i = 0; i < response.getContent().length(); i++) {
 				char character = response.getContent().charAt(i);
