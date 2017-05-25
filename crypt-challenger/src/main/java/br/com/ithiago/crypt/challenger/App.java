@@ -31,6 +31,12 @@ public class App {
 		restClient = new RestClient(URL);
 	}
 
+	public static void main(String[] args) {
+		App app = new App();
+
+		app.executeChallenge();
+	}
+
 	private void executeChallenge() {
 		Integer challengeSize = getChallengeSize();
 		List<String> validChars = getValidChars(challengeSize);
@@ -112,9 +118,4 @@ public class App {
 		return queryParams;
 	}
 
-	public static void main(String[] args) {
-		App app = new App();
-
-		app.executeChallenge();
-	}
 }
