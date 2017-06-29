@@ -47,6 +47,7 @@ server:
     session:
         cookie:
             http-only: true
+        timeout: 1200
 
 info:
     project:
