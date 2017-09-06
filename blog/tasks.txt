@@ -1,5 +1,5 @@
 - Install http://sdkman.io/
-- Install Kotlin
+- Install Kotlin (Via docker???)
 - Hello world in SpringBoot and Kotlin 
 	http://www.baeldung.com/spring-boot-kotlin
 	https://kotlinlang.org/docs/tutorials/spring-boot-restful.html
