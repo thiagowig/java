@@ -1,5 +1,3 @@
-package br.com.ithiago
-
 
 fun sum(a: Int, b: Int): Int {
     return a + b
@@ -21,4 +19,6 @@ fun main(args: Array<String>) {
     var firstValue = 15
     var secondValue = 10
     printSum(firstValue, secondValue)
+
+    usingStringTemplates()
 }
