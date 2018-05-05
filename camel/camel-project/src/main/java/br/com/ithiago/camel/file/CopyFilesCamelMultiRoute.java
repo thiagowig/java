@@ -5,9 +5,9 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
 /**
- * Created by thiago on 5/2/18.
+ * Created by thiago on 5/5/18.
  */
-public class CopyFilesCamel {
+public class CopyFilesCamelMultiRoute {
 
     public static void main(String[] args) {
         CamelContext context = new DefaultCamelContext();
@@ -17,7 +17,12 @@ public class CopyFilesCamel {
                 @Override
                 public void configure() throws Exception {
                     from("file:data/input?noop=true")
-                    .to("file:data/output");
+                            .to("log:?level=INFO&showBody=true&showHeaders=true")
+                            .to("file:data/output")
+                            .to("file:data/output03");
+
+                    from("file:data/input02?noop=true")
+                            .to("file:data/output02");
                 }
             });
 
