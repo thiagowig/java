@@ -1,6 +1,8 @@
 package br.com.ithiago.camelcourse.route;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,11 +11,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleCamelRoute extends RouteBuilder {
 
+    @Autowired
+    private Environment env;
+
     @Override
     public void configure() throws Exception {
-        from("timer:hello?period=10s")
-                .log("Timer invoked and the body is ${body}")
-                .pollEnrich("file:data/input?delete=true&readLock=none")
-                .to("file:data/output");
+        String message = env.getProperty("message");
+
+        from("{{startRoute}}")
+                .log("Timer invoked and the message is " + message)
+                .choice()
+                    .when((header("env").isNotEqualTo("mock")))
+                        .pollEnrich("{{fromRoute}}")
+                    .otherwise()
+                        .log("Mock env flow and the body is ${body}")
+                .end()
+                .to("{{toRoute}}");
     }
 }
