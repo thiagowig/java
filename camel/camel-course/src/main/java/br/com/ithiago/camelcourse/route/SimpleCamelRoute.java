@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by thiago on 5/5/18.
  */
-@Component
+//@Component
 public class SimpleCamelRoute extends RouteBuilder {
 
     @Autowired
@@ -23,8 +23,8 @@ public class SimpleCamelRoute extends RouteBuilder {
                 .choice()
                     .when((header("env").isNotEqualTo("mock")))
                         .pollEnrich("{{fromRoute}}")
-                    .otherwise()
-                        .log("Mock env flow and the body is ${body}")
+                        .split(body())
+                        .log("THE BODY IS ${body}")
                 .end()
                 .to("{{toRoute}}");
     }

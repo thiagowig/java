@@ -1,29 +1,38 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   profiles:
-   active: stage
+    active: dev
+
+camel.springboot.shutdownTimeout: 2
 
 ---
 
 spring:
   profiles: dev
 
-message: Hello DEV
+
 
 ---
 
 spring:
   profiles: stage
 
-message: Hello STAGE
+
 
 ---
 
 spring:
   profiles: prod
 
-message: Hello PROD
+
+
+---
+
+spring:
+  profiles: mock
+
+
 
 ---
