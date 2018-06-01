@@ -11,7 +11,6 @@ import java.util.List;
 /**
  * Created by thiago on 5/31/18.
  */
-@Repository
 public interface PropertyRepository extends PagingAndSortingRepository<Property, String> {
 
     @Query("SELECT prop FROM Property prop WHERE prop.name LIKE %:filter% ORDER BY prop.category")
