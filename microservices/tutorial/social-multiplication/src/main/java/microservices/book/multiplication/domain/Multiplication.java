@@ -12,9 +12,9 @@ public class Multiplication {
     private int factorB;
     private int result;
 
-    public Multiplication(int factorA, int factorB, int result) {
+    public Multiplication(int factorA, int factorB) {
         this.factorA = factorA;
         this.factorB = factorB;
-        this.result = result;
+        this.result = factorA * factorB;
     }
 }
