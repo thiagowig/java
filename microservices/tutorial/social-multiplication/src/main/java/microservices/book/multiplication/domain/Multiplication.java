@@ -1,20 +1,20 @@
 package microservices.book.multiplication.domain;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  * Created by thiago on 9/2/18.
  */
-@Data
-public class Multiplication {
+@RequiredArgsConstructor
+@Getter
+@ToString
+@EqualsAndHashCode
+public final class Multiplication {
 
-    private int factorA;
-    private int factorB;
-    private int result;
+    private final int factorA;
+    private final int factorB;
 
-    public Multiplication(int factorA, int factorB) {
-        this.factorA = factorA;
-        this.factorB = factorB;
-        this.result = factorA * factorB;
+    Multiplication() {
+        this(0, 0);
     }
 }
