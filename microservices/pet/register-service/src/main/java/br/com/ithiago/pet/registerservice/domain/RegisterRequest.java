@@ -8,11 +8,11 @@ import java.io.Serializable;
 /**
  * Created by thiago on 12/1/18.
  */
-@Data
-public class RegisterRequest implements Serializable {
+    @Data
+    public class RegisterRequest implements Serializable {
 
-    private Long userId;
+        private Long userId;
 
-    private String message;
-}
+        private String message;
+    }
 
