@@ -21,7 +21,7 @@ public class RegisterController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest request) {
         RegisterResponse response = service.registerUser(request);
 
