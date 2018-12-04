@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Testing services</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body>
+<div>
+    <h1>Welcome</h1>
+
+    <p>
+    <form id="register-form">
+        ID <input type="text" id="id-field"><br>
+        Message <input type="text" id="message-field"><br>
+        <input type="submit" value="Send">
+    </form>
+    </p>
+    <h2><span class="result-message"></span></h2>
+    <h2>Stats</h2>
+    <table id="stats" style="width:100%">
+        <tr>
+            <th>Attempt ID</th>
+            <th>Multiplication</th>
+            <th>You entered</th>
+            <th>Correct?</th>
+        </tr>
+        <tbody id="stats-body"></tbody>
+    </table>
+</div>
+</body>
+</html>
