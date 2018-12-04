@@ -12,24 +12,28 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EventDispatcher {
-
     private RabbitTemplate rabbitTemplate;
 
-    private String registerExchange;
+    // The exchange to use to send anything related to Multiplication
+    private String multiplicationExchange;
 
-    private String routingKey;
+    // The routing key to use to send this particular event
+    private String multiplicationSolvedRoutingKey;
 
     @Autowired
-    public EventDispatcher(RabbitTemplate rabbitTemplate,
-                           @Value("${register.exchange}") String registerExchange,
-                           @Value("${register.routing.key}") String routingKey) {
-
+    EventDispatcher(final RabbitTemplate rabbitTemplate,
+                    @Value("${multiplication.exchange}") final String multiplicationExchange,
+                    @Value("${multiplication.solved.key}") final String multiplicationSolvedRoutingKey) {
         this.rabbitTemplate = rabbitTemplate;
-        this.registerExchange = registerExchange;
-        this.routingKey = routingKey;
+        this.multiplicationExchange = multiplicationExchange;
+        this.multiplicationSolvedRoutingKey = multiplicationSolvedRoutingKey;
     }
 
-    public void send(RegisterRequest request) {
-        rabbitTemplate.convertAndSend(registerExchange, routingKey, request);
+    public void send(final RegisterRequest event) {
+        rabbitTemplate.convertAndSend(
+                multiplicationExchange,
+                multiplicationSolvedRoutingKey,
+                event);
     }
+
 }

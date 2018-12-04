@@ -20,20 +20,19 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 public class RabbitMQConfiguration implements RabbitListenerConfigurer {
 
     @Bean
-    public TopicExchange petExchange(@Value("${pet.exchange}") String exchangeName) {
+    public TopicExchange multiplicationExchange(@Value("${multiplication.exchange}") final String exchangeName) {
         return new TopicExchange(exchangeName);
     }
 
     @Bean
-    public Queue petQueue(@Value("${pet.queue}") String queueName) {
+    public Queue gamificationMultiplicationQueue(@Value("${multiplication.queue}") final String queueName) {
         return new Queue(queueName, true);
     }
 
     @Bean
-    public Binding binding(Queue queue,
-                           TopicExchange topicExchange,
-                           @Value("${pet.routing-key}") final String routingKey) {
-        return BindingBuilder.bind(queue).to(topicExchange).with(routingKey);
+    Binding binding(final Queue queue, final TopicExchange exchange,
+                    @Value("${multiplication.anything.routing-key}") final String routingKey) {
+        return BindingBuilder.bind(queue).to(exchange).with(routingKey);
     }
 
     @Bean
@@ -52,4 +51,5 @@ public class RabbitMQConfiguration implements RabbitListenerConfigurer {
     public void configureRabbitListeners(final RabbitListenerEndpointRegistrar registrar) {
         registrar.setMessageHandlerMethodFactory(messageHandlerMethodFactory());
     }
+
 }

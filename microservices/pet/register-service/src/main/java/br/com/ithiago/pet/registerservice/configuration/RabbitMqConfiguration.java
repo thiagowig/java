@@ -15,19 +15,20 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMqConfiguration {
 
     @Bean
-    public TopicExchange registerExchange(@Value("${register.exchange}") String registerExchange) {
-        return new TopicExchange(registerExchange);
+    public TopicExchange multiplicationExchange(@Value("${multiplication.exchange}") final String exchangeName) {
+        return new TopicExchange(exchangeName);
     }
 
     @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(producerMessageConverter());
+    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
+        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());
         return rabbitTemplate;
     }
 
     @Bean
-    public Jackson2JsonMessageConverter producerMessageConverter() {
+    public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
+
 }
