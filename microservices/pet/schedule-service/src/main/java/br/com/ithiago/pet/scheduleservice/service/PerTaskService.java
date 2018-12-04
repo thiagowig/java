@@ -1,8 +1,10 @@
 package br.com.ithiago.pet.scheduleservice.service;
 
 import br.com.ithiago.pet.scheduleservice.PetTask;
+import br.com.ithiago.pet.scheduleservice.domain.RegisterRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +14,13 @@ import java.util.List;
 @Service
 public class PerTaskService {
 
-    public List<PetTask> listAll() {
-        return null;
+    private List<RegisterRequest> list = new ArrayList<>();
+
+    public void insertRegister(RegisterRequest request) {
+        this.list.add(request);
+    }
+
+    public List<RegisterRequest> listAll() {
+        return list;
     }
 }
