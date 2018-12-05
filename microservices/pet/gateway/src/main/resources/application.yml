@@ -1,0 +1,20 @@
+server:
+  port: 8000
+
+zuul:
+  prefix: /api
+  routes:
+    register:
+      path: /register/**
+      url: http://localhost:8080/register
+    serviceList:
+      path: /services/**
+      url: http://localhost:8081/services/list
+
+endpoints:
+  trace:
+    sensitive: false
+
+ribbon:
+  eureka:
+    enabled: false

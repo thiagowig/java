@@ -42,6 +42,6 @@ public class RegisterService {
     }
 
     public List<RegisterResponse> getAllRegisters() {
-        return restTemplate.getForObject(scheduleHost + "/services/list", List.class);
+        return restTemplate.getForObject(scheduleHost + "/services", List.class);
     }
 }

@@ -14,7 +14,7 @@ $(document).ready(function() {
                    };
 
         $.ajax({
-            url: 'http://localhost:8080/register',
+            url: 'http://localhost:8000/api/register',
             type: 'POST',
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
