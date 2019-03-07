@@ -21,7 +21,4 @@ public class Property {
 
     private String category;
 
-    private String subCategory;
-
-
 }

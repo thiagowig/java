@@ -1,0 +1,5 @@
+br/com/ithiago/controller/ClientController.class
+br/com/ithiago/repository/ClientRepository.class
+br/com/ithiago/model/Client.class
+br/com/ithiago/Application.class
+br/com/ithiago/service/ClientService.class

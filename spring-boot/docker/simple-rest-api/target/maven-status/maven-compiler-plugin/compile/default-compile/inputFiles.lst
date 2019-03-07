@@ -1,0 +1,5 @@
+/home/thiago/dev/repo/java/spring-boot/docker/simple-rest-api/src/main/java/br/com/ithiago/controller/ClientController.java
+/home/thiago/dev/repo/java/spring-boot/docker/simple-rest-api/src/main/java/br/com/ithiago/model/Client.java
+/home/thiago/dev/repo/java/spring-boot/docker/simple-rest-api/src/main/java/br/com/ithiago/repository/ClientRepository.java
+/home/thiago/dev/repo/java/spring-boot/docker/simple-rest-api/src/main/java/br/com/ithiago/service/ClientService.java
+/home/thiago/dev/repo/java/spring-boot/docker/simple-rest-api/src/main/java/br/com/ithiago/Application.java

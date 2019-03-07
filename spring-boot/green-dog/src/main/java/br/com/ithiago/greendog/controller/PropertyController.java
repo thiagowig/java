@@ -14,14 +14,15 @@ import java.util.List;
  * Created by thiago on 5/31/18.
  */
 @RestController
+
 @RequestMapping("/api")
 public class PropertyController {
 
     @Autowired
     private PropertyRepository propertyRepository;
 
-    @RequestMapping(value = "/find/{filter}", method = RequestMethod.GET)
-    public List<Property> findByFilter(@PathVariable("filter") String filter) {
-        return propertyRepository.findByFilter(filter);
+    @RequestMapping(value = "/find/{name}", method = RequestMethod.GET)
+    public List<Property> findByName(@PathVariable("name") String name) {
+        return propertyRepository.findByName(name);
     }
 }

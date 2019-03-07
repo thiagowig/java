@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by thiago on 10/1/18.
+ * This class implements a REST API for our Multiplication application.
  */
 @RestController
 @RequestMapping("/multiplications")
-public class MultiplicationController {
+final class MultiplicationController {
 
     private final MultiplicationService multiplicationService;
 
@@ -22,7 +22,8 @@ public class MultiplicationController {
     }
 
     @GetMapping("/random")
-    public Multiplication getRandomMultiplication() {
+    Multiplication getRandomMultiplication() {
         return multiplicationService.createRandomMultiplication();
     }
+
 }
