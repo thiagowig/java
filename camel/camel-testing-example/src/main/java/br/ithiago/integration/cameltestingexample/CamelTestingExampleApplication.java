@@ -8,5 +8,6 @@ public class CamelTestingExampleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CamelTestingExampleApplication.class, args);
+		String.valueOf(new Object());
 	}
 }
