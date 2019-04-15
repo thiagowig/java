@@ -10,9 +10,7 @@ public class ClientService {
     @Autowired
     private ClientComponent clientComponent;
 
-    public void doSomething() {
-        clientComponent.doSomething();
-
-        System.out.println("Client Component");
+    public String doSomething() {
+        return clientComponent.doSomething();
     }
 }

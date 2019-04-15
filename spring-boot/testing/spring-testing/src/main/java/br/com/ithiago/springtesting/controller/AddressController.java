@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ClientController {
+public class AddressController {
 
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/client")
-    public String get() {
+    @GetMapping("/address")
+    public String doSomething() {
         return clientService.doSomething();
     }
 }
