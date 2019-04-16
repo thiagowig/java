@@ -1,5 +1,7 @@
 package br.com.ithiago.githubreader.service;
 
+import br.com.ithiago.githubreader.component.RestClient;
+import br.com.ithiago.githubreader.dto.UserInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +24,9 @@ public class UserService {
         this.url = url;
     }
 
-    public ResponseEntity<String> getUserInformation(String userName) {
+    public UserInfoDTO getUserInformation(String userName) {
         String formatedUrl = String.format(url, userName);
 
-        return restClient.callGet(formatedUrl);
+        return (UserInfoDTO) restClient.executeGetCall(formatedUrl, UserInfoDTO.class);
     }
 }

@@ -1,14 +1,10 @@
-package br.com.ithiago.githubreader.service;
+package br.com.ithiago.githubreader.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Created by thiago on 4/15/19.
- */
 @Component
 public class RestClient {
 
@@ -19,8 +15,8 @@ public class RestClient {
         this.restTemplate = builder.build();
     }
 
-    public ResponseEntity<String> callGet(String url) {
-        return this.restTemplate.getForEntity(url, String.class);
+    public Object executeGetCall(String url, Class responseClass) {
+        return this.restTemplate.getForObject(url, responseClass);
     }
 
 }

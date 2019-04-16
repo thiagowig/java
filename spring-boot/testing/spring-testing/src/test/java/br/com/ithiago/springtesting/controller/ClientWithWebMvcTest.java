@@ -13,6 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(ClientController.class)
 public class ClientWithWebMvcTest {
@@ -27,7 +29,7 @@ public class ClientWithWebMvcTest {
     public void testingMock() throws Exception {
         BDDMockito.given(clientService.doSomething()).willReturn("Testing");
 
-        this.mvc.perform((MockMvcRequestBuilders.get("/client")))
+        this.mvc.perform((get("/client")))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("Testing"));
 
