@@ -1,10 +1,9 @@
 package br.com.ithiago.githubreader.service;
 
-import br.com.ithiago.githubreader.component.RestClient;
+import br.com.ithiago.githubreader.component.RestClientComponent;
 import br.com.ithiago.githubreader.dto.UserInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,14 +13,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    final private RestClient restClient;
+    final private RestClientComponent restClient;
 
-    final private String url;
+    @Value("${url.github.user.details}")
+    private String url;
 
     @Autowired
-    public UserService(RestClient restClient, @Value("${url.github.user.details}") String url) {
+    public UserService(RestClientComponent restClient) {
         this.restClient = restClient;
-        this.url = url;
     }
 
     public UserInfoDTO getUserInformation(String userName) {
