@@ -14,9 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
-/**
- * Created by thiago on 4/16/19.
- */
+
 @RestClientTest(RestClientComponent.class)
 @RunWith(SpringRunner.class)
 public class RestClientComponentTest {
@@ -40,3 +38,4 @@ public class RestClientComponentTest {
     }
 
 }
+

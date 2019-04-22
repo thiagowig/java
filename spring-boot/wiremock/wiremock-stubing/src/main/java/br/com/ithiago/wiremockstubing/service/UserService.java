@@ -13,7 +13,7 @@ public class UserService {
 
     private RestTemplate restTemplate;
 
-    @Value("${api.github.path}")
+    @Value("${api.github.user.url}")
     private String url;
 
     public UserService(RestTemplateBuilder builder) {

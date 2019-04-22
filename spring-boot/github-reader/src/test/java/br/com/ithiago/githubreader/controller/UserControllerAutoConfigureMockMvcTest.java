@@ -27,3 +27,4 @@ public class UserControllerAutoConfigureMockMvcTest {
                 .andExpect(content().string("{\"login\":\"thiagowig\"}"));
     }
 }
+

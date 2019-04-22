@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureWireMock(port = 8081)
+@AutoConfigureWireMock(port = 0)
 public class UserControllerTest {
 
     @Autowired
@@ -25,11 +25,6 @@ public class UserControllerTest {
 
     @Test
     public void testFullApp() {
-        stubFor(get(urlEqualTo("/users/thiagowig"))
-            .willReturn(aResponse()
-                    .withHeader("Content-Type", "application/json")
-                    .withBody("{\"login\":\"cabuloso\"}")));
-
         String response = this.testRestTemplate.getForObject("/api/user/info", String.class);
 
         assertEquals("{\"login\":\"cabuloso\"}", response);

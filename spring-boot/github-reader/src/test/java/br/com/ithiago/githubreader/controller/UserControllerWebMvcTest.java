@@ -12,8 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest({UserController.class})
@@ -29,12 +28,16 @@ public class UserControllerWebMvcTest {
     public void shouldTestSomething() throws Exception {
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         userInfoDTO.setLogin("thiagowig");
+        userInfoDTO.setId(1);
 
         given(userService.getUserInformation("thiagowig")).willReturn(userInfoDTO);
 
         this.mvc.perform(get("/api/users/thiagowig/info"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"login\":\"thiagowig\"}"));
+                .andExpect(content().string("{\"login\":\"thiagowig\",\"id\":1}"))
+                .andExpect(jsonPath("$.login").value("thiagowig"));
     }
 
 }
+
+

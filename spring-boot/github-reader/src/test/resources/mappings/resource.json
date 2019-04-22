@@ -1,0 +1,10 @@
+{
+  "request": {
+    "urlPath": "https://api.github.com/users/TESTE",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"id\": \"666\"}"
+  }
+}

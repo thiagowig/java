@@ -13,9 +13,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 
-/**
- * Created by thiago on 4/16/19.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
@@ -24,11 +21,6 @@ public class UserServiceTest {
 
     @Mock
     private static RestClientComponent restClient;
-
-    @Before
-    public void setup() {
-        ReflectionTestUtils.setField(userService, "url", "https://api.github.com/usuarios/%s");
-    }
 
     @Test
     public void shouldTestSomething() {
