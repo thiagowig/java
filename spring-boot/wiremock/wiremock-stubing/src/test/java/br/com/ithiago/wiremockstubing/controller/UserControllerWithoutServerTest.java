@@ -1,6 +1,8 @@
 package br.com.ithiago.wiremockstubing.controller;
 
+import br.com.ithiago.wiremockstubing.test.types.IntegrationTest;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureWireMock(port = 0)
 @AutoConfigureMockMvc
+@Category(IntegrationTest.class)
 public class UserControllerWithoutServerTest {
 
     @Autowired
