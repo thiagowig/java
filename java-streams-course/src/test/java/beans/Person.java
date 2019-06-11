@@ -44,7 +44,7 @@ public class Person {
   }
 
   @Override
-  public String toString() {
+  /*public String toString() {
     return "Person{" +
         "id=" + id +
         ", firstName='" + firstName + '\'' +
@@ -53,5 +53,11 @@ public class Person {
         ", gender='" + gender + '\'' +
         ", age=" + age +
         '}';
+  }*/
+  public String toString() {
+    return "Person{" +
+            ", age=" + age +
+            '}';
   }
+
 }
