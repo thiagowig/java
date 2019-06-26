@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList;
 import java.math.BigDecimal;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import mockdata.MockData;
 import org.junit.Test;
@@ -16,17 +17,34 @@ public class Lecture7 {
 
   @Test
   public void count() throws Exception {
+      long count = MockData.getPeople()
+              .stream()
+              .filter(person -> person.getGender().equals("Female"))
+              .count();
 
+      System.out.println(count);
   }
 
   @Test
   public void min() throws Exception {
+      Double min = MockData.getCars()
+              .stream()
+              .mapToDouble(Car::getPrice)
+              .min()
+              .getAsDouble();
 
+      System.out.println(min);
   }
 
   @Test
   public void max() throws Exception {
+      Double max = MockData.getCars()
+              .stream()
+              .mapToDouble(Car::getPrice)
+              .max()
+              .orElse(0);
 
+      System.out.println(max);
   }
 
 
@@ -34,6 +52,12 @@ public class Lecture7 {
   public void average() throws Exception {
     List<Car> cars = MockData.getCars();
 
+      Double average = cars.stream()
+              .mapToDouble(Car::getPrice)
+              .average()
+              .getAsDouble();
+
+      System.out.println(average);
   }
 
   @Test
@@ -51,15 +75,13 @@ public class Lecture7 {
   @Test
   public void statistics() throws Exception {
     List<Car> cars = MockData.getCars();
-    DoubleSummaryStatistics statistics = cars.stream()
-        .mapToDouble(Car::getPrice)
-        .summaryStatistics();
-    System.out.println(statistics);
-    System.out.println(statistics.getAverage());
-    System.out.println(statistics.getCount());
-    System.out.println(statistics.getMax());
-    System.out.println(statistics.getMin());
-    System.out.println(statistics.getSum());
+
+      DoubleSummaryStatistics stats = cars.stream()
+              .mapToDouble(Car::getPrice)
+              .summaryStatistics();
+
+      System.out.println(stats);
+
   }
 
 }
