@@ -40,7 +40,9 @@ public class Lecture1 {
 
   @Test
   public void declarativeApproachUsingStreams() throws Exception {
-    MockData.getPeople().stream()
+    ImmutableList<Person> people = MockData.getPeople();
+
+    people.stream()
             .filter(person -> person.getAge() <= MAXIMUM_AGE)
             .limit(RECORDS_NUMBER)
             .collect(Collectors.toList())
