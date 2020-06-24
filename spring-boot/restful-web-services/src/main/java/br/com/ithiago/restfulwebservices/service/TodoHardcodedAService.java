@@ -1,7 +1,8 @@
 package br.com.ithiago.restfulwebservices.service;
 
 import br.com.ithiago.restfulwebservices.domain.Todo;
-import br.com.ithiago.restfulwebservices.utils.CustomCollector;
+import br.com.ithiago.restfulwebservices.repository.TodoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,6 +11,9 @@ import java.util.List;
 
 @Service
 public class TodoHardcodedAService {
+
+    @Autowired
+    public TodoRepository todoRepository;
 
     private static List<Todo> todos = new ArrayList();
     private static long idCounter = 0;
@@ -29,16 +33,12 @@ public class TodoHardcodedAService {
         );
     }
 
-    public List<Todo> getAll() {
-        return TodoHardcodedAService.todos;
+    public List<Todo> getAll(String username) {
+        return todoRepository.findByUsername(username);
     }
 
     public Todo getById(long id) {
-        Todo todo = TodoHardcodedAService.todos.stream()
-            .filter(item -> item.getId().equals(id))
-            .collect(CustomCollector.toSingleton());
-
-        return todo;
+        return todoRepository.findById(id).get();
     }
 
     public Todo saveOrUpdate(Todo todo) {

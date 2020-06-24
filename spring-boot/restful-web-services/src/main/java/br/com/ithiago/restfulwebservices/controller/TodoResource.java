@@ -19,7 +19,7 @@ public class TodoResource {
 
     @GetMapping("/users/{username}/todos")
     public List<Todo> getAll(@PathVariable String username) {
-        return todoService.getAll();
+        return todoService.getAll(username);
     }
 
     @GetMapping("/users/{username}/todos/{id}")
