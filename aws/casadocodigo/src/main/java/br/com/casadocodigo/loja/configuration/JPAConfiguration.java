@@ -1,12 +1,14 @@
 package br.com.casadocodigo.loja.configuration;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -15,8 +17,25 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
+@PropertySource(value = "classpath:application.properties")
 public class JPAConfiguration {
+	
+	private static final String databaseConnection = "jdbc:mysql://%s:%s/%s?useSSL=false";
+	
+	@Value("${database.host}")
+    private String databaseHost;
+	
+	@Value("${database.port}")
+    private String databasePort;
 
+	@Value("${database.user}")
+    private String databaseUser;
+
+	@Value("${database.password}")
+    private String databasePassword;
+	
+	@Value("${database.name}")
+    private String databaseName;
 	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
@@ -42,11 +61,11 @@ public class JPAConfiguration {
 	}
 
 	@Bean
-	public DataSource dataSource() {
+	public DataSource dataSource() throws IOException {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUsername("root");
-		dataSource.setPassword("rootpassword");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigo");
+		dataSource.setUsername(databaseUser);
+		dataSource.setPassword(databasePassword);
+		dataSource.setUrl(String.format(databaseConnection, databaseHost, databasePort, databaseName));
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		return dataSource;
 	}

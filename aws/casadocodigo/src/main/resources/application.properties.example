@@ -1,0 +1,13 @@
+
+# AWS Config
+aws.access.key=
+aws.secret.key=
+aws.region=
+aws.bucket.images=
+
+#Database config
+database.host=
+database.port=
+database.user=
+database.password=
+database.name=

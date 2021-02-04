@@ -12,28 +12,25 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 @Configuration
 public class AmazonConfiguration {
 	
-    private static final String aws_access_key;
+	@Value("${aws.access.key}")
+    private String awsAccessKey;
 	
-    private static final String aws_secret_key;
+	@Value("${aws.secret.key}")
+    private String awsSecretKey;
 	
-    private static final String aws_region;
-    
-    static {
-    	aws_access_key = System.getenv("aws_access_key");
-    	aws_secret_key = System.getenv("aws_secret_key");
-    	aws_region = System.getenv("aws_region");
-    }
+	@Value("${aws.region}")
+    private String awsRegion;
 	
 	@Bean
 	public BasicAWSCredentials basicAWSCredentials() {
-		return new BasicAWSCredentials(aws_access_key, aws_secret_key);
+		return new BasicAWSCredentials(awsAccessKey, awsSecretKey);
 	}
 	
 	@Bean
 	public AmazonS3 amazonS3() {
 		return AmazonS3ClientBuilder
 				.standard()
-				.withRegion(aws_region)
+				.withRegion(awsRegion)
 				.withCredentials(new AWSStaticCredentialsProvider(basicAWSCredentials()))
 				.build();
 	}

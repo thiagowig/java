@@ -100,10 +100,10 @@
             <artifactId>spring-orm</artifactId>
             <version>4.1.0.RELEASE</version>
         </dependency>
-        <dependency>
+            <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.15</version>
+            <version>5.1.44</version>
         </dependency>
 
         <!-- JSR 303 with Hibernate Validator -->
@@ -207,7 +207,6 @@
 
     </dependencies>
 
-
     <build>
         <finalName>casadocodigo</finalName>
         <plugins>
@@ -245,5 +244,14 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>resources</directory>
+                <targetPath>${project.build.outputDirectory}</targetPath>
+                <includes>
+                    <include>application.properties</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 </project>

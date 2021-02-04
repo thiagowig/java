@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,21 +22,18 @@ public class FileSaver {
 	@Autowired
 	private AmazonS3 amazonS3;
 	
-	private static final String aws_bucket;
-    
-    static {
-    	aws_bucket = System.getenv("aws_bucket");
-    }
+	@Value("${aws.bucket.images}")
+    private String awsBucketImages;
 
 	public String write(MultipartFile file) {
 		try {
 			
-			PutObjectRequest request = new PutObjectRequest(aws_bucket, file.getOriginalFilename(), file.getInputStream(), null);		
+			PutObjectRequest request = new PutObjectRequest(awsBucketImages, file.getOriginalFilename(), file.getInputStream(), null);		
 			request.setCannedAcl(CannedAccessControlList.PublicRead);
 			
 			amazonS3.putObject(request);
 			
-			return "http://s3.amazonaws.com/" + aws_bucket + "/" + file.getOriginalFilename();
+			return "http://s3.amazonaws.com/" + awsBucketImages + "/" + file.getOriginalFilename();
 			
 		} catch (IllegalStateException | IOException e) {
 			throw new RuntimeException(e);
