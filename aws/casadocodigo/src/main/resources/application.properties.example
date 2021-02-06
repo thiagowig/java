@@ -11,3 +11,7 @@ database.port=
 database.user=
 database.password=
 database.name=
+
+# Redis config
+redis.host=
+redis.port=
