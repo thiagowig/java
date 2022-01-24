@@ -1,0 +1,8 @@
+{
+  "@class" : "org.apereo.cas.services.RegexRegisteredService",
+  "serviceId" : "https://localhost:8444/cas-management/",
+  "name" : "casManagement",
+  "id" : 1001,
+  "logoutType" : "BACK_CHANNEL",
+  "logoutUrl" : "https://localhost:8444/cas-management/logout"
+}
