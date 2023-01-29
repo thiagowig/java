@@ -14,7 +14,8 @@ public class LoginServiceWithEvent {
     }
 
     @Transactional
-    public void complete(String uuid) {
+    public void login(String uuid) {
         events.publishEvent(uuid);
+        System.out.println("Sync or Async?");
     }
 }
